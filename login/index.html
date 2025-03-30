@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | gigaChat</title>
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@16.0.2"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <link rel="icon" type="image/x-icon" href="thumbnail.png">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+      if (window.innerWidth <= 968) {
+    window.location.href = "https://gigachat.ddns.net/m.login";
+}
+
+    </script>
+    </head>
+
+
+  </head>
+  <body>
+  <div class="app">
+    <header>
+      <img src="icons8-message.png" alt="gigaChat logo">
+      <h1>gigaChat</h1>
+      <p>Secure Messaging Application</p>
+      <a href="https://github.com/flxn05/messenger" target="_blank">Source Code</a>
+    </header>
+  
+    <main class="active" id="signIn">
+      <nav>
+        <div onclick="tSIA()" style="background-color: var(--secondary);">Log In</div>
+        <div onclick="tSUA()">Sign Up</div>
+      </nav>
+      <article id="login_form">
+        <input type="text" name="username" id="username" placeholder="username">
+        <input type="password" name="password" id="password" placeholder="password">
+        <button type="button" id ="login_button" onclick="login()">Login</button>
+      </article>
+    </main>
+  
+  <main id="signUp">
+    <nav>
+      <div onclick="tSIA()">Log In</div>
+      <div onclick="tSUA()" style="background-color: var(--secondary);">Sign Up</div>
+    </nav>
+    <article id="signupPopup">
+      <input placeholder="account username" id="1">
+      <input placeholder="account password" id="2" type="password">
+      <button onclick="signup()">Create</button>
+    </article>
+  </main>
+  <footer>
+    <p class="mobileonly">Free Online Drive Storage</p>
+    <a class="mobileonly" href="https://github.com/MultimeterManiac/gigaDrive" target="_blank">Source Code</a>
+    <a href="https://icons8.com" target="_blank">Icons by Icons8</a></footer>
+  </div>
+  
+  
+  <script>
+    let signIn = document.getElementById("signIn");
+    let signUp = document.getElementById("signUp");
+      function tSIA() { // when user clicks on sign in, its class will be toggled.
+        signIn.classList.add("active");
+        signUp.classList.remove("active");
+      }
+  
+      function tSUA() { // when user clicks on sign up, its class will be toggled.
+        signIn.classList.remove("active");
+        signUp.classList.add("active");
+      }
+  </script>
+  </body>
+  </html>

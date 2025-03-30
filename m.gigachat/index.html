@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>gigaChat</title>
+  <link id="themeStylesheet" rel="stylesheet" href="m.whatsapp.css">
+  <link rel="icon" type="image/x-icon" href="thumbnail.png">
+  <script src="https://cdn.jsdelivr.net/npm/appwrite@16.0.2"></script>
+  <script type="text/javascript" src="website2.js"></script>
+  <script src="client.js"></script>
+  <link rel="manifest" href="manifest.json">
+  <!--//usually width= 420px
+  //usually height= 800px-->
+</head>
+<body>
+  <nav id="nav">
+    <section id="headlineLogo">
+    <p onclick="reloadPage()" class="headline">gigaChat</p>
+    </section>
+    <section>
+      
+      <button id="changeTheme">Theme</button>
+      <button id="logout" onclick="logout()">Logout</button>
+      <button id="addNewBtn" onclick="addNew()">+</button>
+    </section>
+  </nav>
+  <main id="main">
+    <div class="one" id="one">
+
+
+      <input type="text" class="text-input" id="search-box" placeholder="Search ....">
+      <div id="searchIconCon" onclick="openSearch()"><img src="search.svg" alt="searchIcon" id="searchIcon"></div>
+      <div id="closeIconCon"><img src="close.svg" alt="closeIcon" id="closeIcon" onclick="closeSearch()"></div>
+      <div class="chat-box" style="font-style: italic;">loading ....</div>
+      <div class="chat-box" style="font-style: italic;">loading ....</div>
+      <div class="chat-box" style="font-style: italic;">loading ....</div>
+      <div class="chat-box" style="font-style: italic;">loading ....</div>
+      <div class="chat-box" style="font-style: italic;">loading ....</div>
+      <div class="chat-box" style="font-style: italic;">loading ....</div>
+
+    </div>
+
+      <div class="text-input-con">
+      <input type="text" class="text-input" id="text_input" placeholder="Message ....">
+      <div>
+      <button type="button" id="startVoiceMsg" onclick="startVoiceMsg()" style="user-select: none;">
+          <img src="microphone.png" alt="send" id="microphoneIcon"></button>
+        </div>
+
+      <button type="button" id="send-msg" onclick="send_msg()">
+        <img src="send.png" alt="send" id="sendIcon"></button>
+      </div>
+    </div>
+    <div class="three" id="three">
+
+
+      <div class="chat-con">
+        <div class="space"></div>
+
+        <!--message-->
+        <div class="msg-rx">
+          <div class="msg-content-rx">Hi! Open a group or contact to start the chat!</div>
+        </div>
+        <!--message-->
+        <div class="msg-tx">
+          <div class="msg-content-tx">.... our source code is <a href="https://github.com/flxn05/messenger" target="_blank" style="color: black; font-weight: bold;">[here]</a>. Feel free to <a href="mailto:get.giga.chat@gmail.com?subject=Contact Request from gigaChat user" style="color: black; font-weight: bold;">[contact the gigaChat team]</a> for support!</div>
+        </div>
+      
+        <!--message-->
+        <div class="msg-rx">
+          <div class="msg-content-rx" style="max-width: 100%; line-height: 1.5rem;">
+            Our developers:
+            <br><br>
+            <li>Jonathan Wallasch (Frontend)</li>
+            <br>
+            <li>David Ott (Backend)</li>
+            <br>
+            <li>Felix Nowak (UI/UX Design)</li>
+            <br>
+          </div>
+        </div>
+        <!--message-->
+        <div class="msg-rx">
+          <div class="msg-content-rx">Thank you for using gigaChat!</div>
+        </div>
+
+<!--message
+<div class="msg-rx">
+  <div class="voice-content-rx">
+    <div class="voice-content-name">Name:</div>
+    <div class="voice-content-controls">
+      <img src="play.png" id="playVoiceMsg" onclick="playClicked()">
+      <img src="pause.png" id="pauseVoiceMsg" onclick="pauseClicked()">
+    </div>
+    <div id="voice-content-waves">
+            <div class="voiceBars" id="vB1"></div>
+            <div class="voiceBars" id="vB2"></div>
+            <div class="voiceBars" id="vB3"></div>
+            <div class="voiceBars" id="vB4"></div>
+            <div class="voiceBars" id="vB5"></div>
+            <div class="voiceBars" id="vB6"></div>
+            <div class="voiceBars" id="vB7"></div>
+            <div class="voiceBars" id="vB8"></div>
+            <div class="voiceBars" id="vB9"></div>
+            <div class="voiceBars" id="vB10"></div>
+            <div class="voiceBars" id="vB11"></div>
+            <div class="voiceBars" id="vB12"></div>
+            <div class="voiceBars" id="vB13"></div>
+            <div class="voiceBars" id="vB14"></div>
+            <div class="voiceBars" id="vB15"></div>
+            <div class="voiceBars" id="vB16"></div>
+    </div>
+  </div>
+</div>
+
+message
+<div class="msg-rx">
+  <div class="msg-content-rx" style="line-height: 1.5rem;">Spoiler: Voice Messages, Media Upload and Notifications are coming soon to gigaChat!</div>
+</div>
+message
+<div class="msg-tx">-msg-container
+  <div class="media-content-tx"><message itself
+    <div class="media-content-name">Name:</div>Sender
+    <img src="910205.png" id="media-img" onclick="enterFocus()" alt="Error displaying media. Contact gigaChat developers.">#media-img [main img]
+
+    <div class="media-content-description">This is an image.</div>
+  </div>
+</div>
+
+      </div> chat con-->
+    </div> <!--three-->
+
+
+ <div id="mediaAreaFocus">
+<!--#media-img-focus for fullscreen viewing. display none is default-->
+<!-- MEDIA AREA FOR FOCUS -->
+
+<img id="closeGallery" src="close.svg" alt="close" onclick="closeFocus()">
+
+
+<img src="910205.png" id="media-img-focus-bg" alt="Error displaying media. Contact gigaChat developers.">
+<img src="910205.png" id="media-img-focus" alt="Error displaying media. Contact gigaChat developers.">
+<!--new img--><!--this is an example.
+
+[ERROR: THE CODE OPENS THE OTHER IMAGE (MAYBE BACUASE IT IS THE FIRST???)]
+
+-->
+<img src="microphone.png" id="media-img-focus-bg" alt="nigger">
+<img src="microphone.png" id="media-img-focus" alt="nogger shock">
+    
+
+ </div>
+
+    <div id="addMenu">
+
+      <h1>Add to gigaChat</h1>
+      <p>You can add members to a group.<br>For direct chats, just enter <i>one</i> user.</p>
+    <section id="addGroup">
+
+      <section id="groupNameSection">
+        <label for="groupName">Chat name:</label>
+        <input id="groupName">
+        <p id="tooltipUserList">e.g. <i>"Joni and David"</i></p>
+      </section>
+
+      <section id="userListSection">
+        <label for="userList">Users:</label>
+        <input id="userList">
+        <p id="tooltipUserList">
+          e.g.<i> "Joni:David:Felix"</i><br>
+          Seperate with colons [:], check spelling.<br>
+          <span style="color: rgb(207, 19, 19);">Don't forget to add yourself!</span></p>
+      </section>
+
+      <section id="cancelCreate">
+        <button id="cancelBtn" onclick="closeMenu()">Cancel</button>
+        <button id="createBtn">Create</button>
+      </section>
+
+    </section>
+    </div>
+  </main>
+  <script>
+    document.getElementById("changeTheme").addEventListener("click", function () {
+        const stylesheet = document.getElementById("themeStylesheet");
+
+
+        if (stylesheet.getAttribute("href") === "m.whatsapp.css") {
+            stylesheet.setAttribute("href", "m.signal.css");
+        } else {
+            stylesheet.setAttribute("href", "m.whatsapp.css");
+        }
+    });
+
+    function reloadPage() {
+    window.location.reload();
+}
+
+let addNewBtn = document.getElementById('addNewBtn');
+let addMenu = document.getElementById('addMenu');
+let cancelBtn = document.getElementById('cancelBtn');
+
+let searchBtn = document.getElementById('searchIconCon');
+let searchBar = document.getElementById('search-box');
+let closeBtn = document.getElementById('closeIconCon');
+
+function addNew() {
+  addMenu.style.display = 'block';
+  document.querySelector('.one').classList.add('unfocus');
+  document.querySelector('.three').classList.add('unfocus');
+  document.getElementById('nav').classList.add('unfocus');
+}
+
+function closeMenu() {
+  addMenu.style.display = 'none';
+  document.querySelector('.one').classList.remove('unfocus');
+  document.querySelector('.three').classList.remove('unfocus');
+  document.getElementById('nav').classList.remove('unfocus');
+}
+
+function openSearch() {
+  searchBar.style.width = '66vw';
+  searchBar.style.paddingBlock = '1rem';
+  searchBar.style.paddingInline = '1rem';
+  closeBtn.style.display = 'flex';
+  searchBtn.style.display = 'none';
+  searchBar.focus();
+}
+
+searchBar.addEventListener('input', function() {
+    const query = this.value.toLowerCase();
+    const items = document.querySelectorAll('#one .chat-box');
+
+    items.forEach(item => {
+        const itemText = item.textContent.toLowerCase();
+        if (itemText.includes(query)) {
+            item.style.display = '';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+});
+
+function closeSearch() {
+  searchBar.style.width= '0';
+  searchBar.style.padding = '0';
+  closeBtn.style.display = 'none';
+  searchBtn.style.display = 'flex'
+}
+
+
+
+const startVoiceMsgBtn = document.getElementById('startVoiceMsg');
+
+//change buttons (type/talk)
+startVoiceMsgBtn.addEventListener('touchstart', () => {
+    startVoiceMsgBtn.classList.add('recording');
+});
+
+startVoiceMsgBtn.addEventListener('touchend', () => {
+    startVoiceMsgBtn.classList.remove('recording');
+});
+
+startVoiceMsgBtn.addEventListener('touchcancel', () => {
+    startVoiceMsgBtn.classList.remove('recording');
+});
+
+//change buttons when writing
+document.getElementById('text_input').addEventListener('input', function () {
+    const textInputChange = document.getElementById('text_input').value.trim();
+    const startVoiceMsg = document.getElementById('startVoiceMsg');
+    const sendMsg = document.getElementById('send-msg');
+
+    if (textInputChange !== '') {
+        startVoiceMsg.style.display = 'none';
+        sendMsg.style.display = 'inline-block';
+    } else {
+        startVoiceMsg.style.display = 'inline-block';
+        sendMsg.style.display = 'none';
+    }
+});
+
+
+let playVoiceMsg = document.getElementById('playVoiceMsg');
+let pauseVoiceMsg = document.getElementById('pauseVoiceMsg');
+let soundWaves = document.getElementById('voice-content-waves');
+
+function playClicked() {
+  playVoiceMsg.style.display = 'none';
+  pauseVoiceMsg.style.display = 'flex';
+  soundWaves.style.opacity = '1';
+  //add btn function :: playMedia
+}
+
+function pauseClicked() {
+  pauseVoiceMsg.style.display = 'none';
+  playVoiceMsg.style.display = 'flex';
+  soundWaves.style.opacity = '0';
+  //add btn function :: pauseMedia
+}
+
+let galleryView = document.getElementById('mediaAreaFocus');
+let imgFocusBg = document.getElementById('media-img-focus-bg');
+let imgFocus = document.getElementById('media-img-focus');
+let closeGallery = document.getElementById('closeGallery');
+
+
+function enterFocus() {
+  console.log('Entering Gallery view ....');
+  galleryView.style.display = 'block';
+  imgFocus.style.display = 'block';
+  imgFocusBg.style.display = 'block';
+  closeGallery.style.display = 'block';
+}
+
+function closeFocus() {
+  console.log('Closing Gallery view ....');
+  galleryView.style.display = 'none';
+  imgFocus.style.display = 'none';
+  imgFocusBg.style.display = 'none';
+  closeGallery.style.display = 'none';
+}
+
+</script>
+</body>
+</html>
