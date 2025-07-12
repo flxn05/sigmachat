@@ -61,6 +61,7 @@ img {
 }
 #backToList img {
   display: block;
+  width: 12px;
 }
 #one {
   display: grid;
@@ -86,7 +87,7 @@ img {
   bottom: 0;
   left: 0;
   right: 0;
-  padding-bottom: 100vh;
+  padding-bottom: 10vh;
   overflow-y: scroll;
 
   display: grid;
@@ -115,10 +116,13 @@ img {
 .msg-content-rx {
   background-color: var(--pop);
   margin-left: 12px;
+  box-shadow: 0 0 12px rgba(63, 63, 63, .1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .msg-content-tx {
   background-color: var(--primary);
   margin-right: 12px;
+  box-shadow: 12px 12px 44px rgba(25, 110, 81, .5);
 }
 
 #contact {
@@ -146,20 +150,18 @@ img {
   position: fixed;
   top: 4vh;
   left: calc(50vw - 12px);
-  padding: 0;
-  width: 24px;
-  height: 24px;
+  height: calc(1rem + 18px);
+  width: calc(1rem + 18px);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   translate: calc(-33vw - 24px);
-  height: 3rem;
   background-color: rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 36px rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: solid 1px rgba(255, 255, 255, .1);
   text-align: center;
   display: flex;
   align-items: center;
@@ -193,4 +195,52 @@ img {
     transform: translateX(0);
     filter: brightness(1) blur(0) saturate(1);
   }
+}
+.text-input-con {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  z-index: 5;
+}
+#text_input {
+  width: calc(100% - (1rem + 18px) - 44px);
+  padding-block: 4px;
+  border-radius: 10px;
+  background-color: rgba(63, 63, 63, .975);
+  box-shadow: 0 0 10vw rgba(0, 0, 0);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+}
+#send-msg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(1rem + 18px);
+  width: calc(1rem + 18px);
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 36px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: solid 1px rgba(255, 255, 255, .1);
+  margin-left: 6px;
+}
+#send-msg img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+.bottomBlur {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 10vh;
+  z-index: 2;
+  background-image: linear-gradient(to top, var(--main), transparent);
 }
