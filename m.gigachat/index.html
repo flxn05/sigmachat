@@ -18,20 +18,36 @@
 </head>
 <body>
   <nav id="nav">
-    <p onclick="reloadPage()">gigaChat (clickmenu)</p>
+    <section id="headsection">
+    <h1 onclick="">gigaChat</h1>
+    <button id="addNewBtn" onclick="document.getElementById('addMenu').style.display = 'flex'"><img src="close.svg" alt="new"></button>
+    </section>
     <section id="searchSection">
     <input type="text" class="text-input" id="search-box" placeholder="Search">
     </section> 
   </nav>
 
-  <!--<div id="popupMenu" class="hidden">
+  <div id="popupMenu" class="hidden">
     <button id="changeTheme" class="primary">Theme</button>
     <button id="logout" class="secondary" onclick="logout()">Logout</button>
-    <button id="addNewBtn" onclick="addNew()">+</button>
-  </div>-->
+  </div>
 
   <main id="main">
     <div class="one" id="one">
+      <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
+      <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
+      <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
+      <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
+      <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
+      <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
+      <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
+      <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
+      <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
+      <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
+      <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
+      <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
+      <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
+      <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
       <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
       <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
       <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
@@ -50,9 +66,12 @@
 <!--/bottom-->
 <div class="bottomBlur"></div>
 
-      <div class="chat-con">
+      <div class="chat-con" id="chat-con">
         <div id="backToList"><img src="back.png" alt="back"></div>
-        <div id="contact">"Neue Gruppe"</div>
+        <div id="chatName">
+         <div id="contact">"Neue Gruppe"</div>
+        <div id="contactType">Group</div>
+        </div>
 
         <!--message-->
         <div class="msg-rx">
@@ -187,35 +206,83 @@ message
 
  </div>
 
-    <div id="addMenu">
+  </main>
 
-      <h1>Add to gigaChat</h1>
-      <p>You can add members to a group.<br>For direct chats, just enter <i>one</i> user.</p>
-    <section id="addGroup">
+<aside>
+  <div id="addMenu">
 
-      <section id="groupNameSection">
-        <label for="groupName">Chat name:</label>
-        <input id="groupName">
-        <p id="tooltipUserList">e.g. <i>"Joni and David"</i></p>
-      </section>
+    <div id="chatNameManage">
+      <div id="contactManage"><div id="previewChatName"></div></div>
+     <div id="contactTypeManage">unset</div>
+     </div>
 
-      <section id="userListSection">
-        <label for="userList">Users:</label>
-        <input id="userList">
-        <p id="tooltipUserList">
-          e.g.<i> "Joni:David:Felix"</i><br>
-          Seperate with colons [:], check spelling.<br>
-          <span style="color: rgb(207, 19, 19);">Don't forget to add yourself!</span></p>
-      </section>
+    <h1>Manage Chats</h1>
 
-      <section id="cancelCreate">
-        <button id="cancelBtn" onclick="closeMenu()">Cancel</button>
-        <button id="createBtn">Create</button>
-      </section>
+  <section id="addGroup">
+
+    <section id="groupNameSection">
+      <label for="groupName">Name</label>
+      <input id="groupName" oninput="document.getElementById('previewChatName').textContent = this.value;" autofocus>
 
     </section>
-    </div>
-  </main>
+
+    <section id="userListSection">
+      <label for="userList">Members</label>
+      <input id="userList" oninput="
+      const c = (this.value.match(/:/g) || []).length;
+      document.getElementById('contactTypeManage').textContent =
+        c === 0 ? 'Invalid' : (c === 1 ? 'Contact' : 'Group');
+    " placeholder="user:user:user">
+    </section>
+    <section>
+      <div id="importantNoteAddGroup">Include yourself if needed.</div>
+    </section>
+
+    <section id="cancelCreate">
+      <button id="cancelBtn" onclick="document.getElementById('addMenu').style.display = 'none';" class="secondary">Cancel</button>
+      <button id="createBtn" class="primary">Create</button>
+    </section>
+
+  </section>
+  </div>
+</aside>
+
+<script>
+  document.getElementById('backToList').addEventListener('click', function () {
+  const one = document.getElementById('one');
+  const nav = document.getElementById('nav');
+  const three = document.getElementById('three');
+  const chatCon = document.getElementById('chat-con');
+  const textInputCon = document.querySelector('.text-input-con');
+
+  one.classList.add('listActive');
+  nav.classList.add('listActive');
+  three.classList.add('chatInactive');
+  chatCon.classList.add('chatInactive');
+
+  setTimeout(() => {
+    one.classList.remove('listActive');  // Korrektur hier
+    one.classList.add('listNowActive');   // Korrektur hier
+    nav.classList.remove('listActive');
+    nav.classList.add('listNowActive');
+
+    three.classList.remove('chatInactive');
+    three.classList.add('chatNowInactive');
+    chatCon.classList.remove('chatInactive');
+    chatCon.classList.add('chatNowInactive');
+  }, 8000);
+
+  textInputCon.classList.add('removeMsgCon');
+
+  setTimeout(() => {
+    textInputCon.classList.remove('removeMsgCon');
+    textInputCon.classList.add('removedMsgCon');
+  }, 5000);
+});
+
+</script>
+
+
   <script>
     document.getElementById("changeTheme").addEventListener("click", function () {
         const stylesheet = document.getElementById("themeStylesheet");
@@ -240,12 +307,6 @@ let searchBtn = document.getElementById('searchIconCon');
 let searchBar = document.getElementById('search-box');
 let closeBtn = document.getElementById('closeIconCon');
 
-function addNew() {
-  addMenu.style.display = 'block';
-  document.querySelector('.one').classList.add('unfocus');
-  document.querySelector('.three').classList.add('unfocus');
-  document.getElementById('nav').classList.add('unfocus');
-}
 
 function closeMenu() {
   addMenu.style.display = 'none';
@@ -356,6 +417,7 @@ function closeFocus() {
   imgFocusBg.style.display = 'none';
   closeGallery.style.display = 'none';
 }
+
 
 </script>
 </body>
