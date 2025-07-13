@@ -114,7 +114,7 @@ img {
   grid-template-columns: 100%;
 }
 .chat-box {
-  display: flex;
+  display: grid;
   align-items: center;
   height: 3rem;
   padding-left: 24px;
@@ -129,13 +129,14 @@ img {
   top: 0;
   bottom: 0;
   left: 0;
-  right: 0;                             /* only for development */
+  right: 0;
   padding-bottom: 10vh;
   overflow-y: scroll;
   display: grid;
   padding-top: 12vh;
   grid-template-columns: 100vw;
   z-index: 2;
+  display: grid; /* only for development */
 }
 .msg-rx {
   display: flex;
@@ -284,10 +285,11 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 2;
+  z-index: 3;
   background-color: rgba(25, 25, 25, 0.5);
   backdrop-filter: blur(10px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
+  overflow-y: scroll;
 }
 
 #chatNameManage {
@@ -479,32 +481,75 @@ animation: removeMsgCon ease-in-out .5s both;
 .listNowInactive, .chatNowInactive, .removedMsgCon {
   opacity: .99;
 }
-/* onclick="document.getElementById('backToList').addEventListener('click', function () {
-          const one = document.getElementById('one');
-          const nav = document.getElementById('nav');
-          const three = document.getElementById('three');
-          const chatCon = document.getElementById('chat-con');
 
-          one.classList.add('listgActive');
-          nav.classList.add('listgActive');
-          three.classList.add('chatInactive');
-          chatCon.classList.add('chatInactive');
 
-          setTimeout(() => {
-            one.classList.remove('ligstActive');
-            one.classList.add('listNgowActive');
-            nav.classList.remove('ligstActive');
-            nav.classList.add('listNgowActive');
+#popupMenu {
+  position: fixed;
+  top: 5rem;
+  left: 50px;
+  min-width: 45vw;
+  background-color: rgba(63, 63, 63, 0.4);
+  display: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  backdrop-filter: blur(5px) saturate(180%);
+  -webkit-backdrop-filter: blur(5px) saturate(180%);
+}
+#popupMenu button {
+  background-color: transparent;
+  border: none;
+  color: var(--font);
+  font-size: 1rem;
+  padding: 0.5rem;
+  text-align: left;
+}
 
-            three.classList.remove('chatInactive');
-            three.classList.add('chatNowInactive');
-            chatCon.classList.remove('chatInactive');
-            chatCon.classList.add('chatNowInactive');
-          }, 5000);
-        const textInputCon = document.querySelector('.text-input-con');
-        textInputCon.classList.add('removeMsgCon');
+#infoMenu {
+  display: none;
+  position: fixed;
+  top: calc(1rem + 1rem + 4vh + 12px + 20px);
+  left: 15vw;
+  right: 15vw;
+  grid-template-columns: 1fr 1fr 1fr;
+  z-index: 2;
+  animation: infoMenu ease .6s both;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: none;
+  padding: 1rem;
+  border-radius: 20px;
+  backdrop-filter: blur(10px) saturate(180%);
+}
+@keyframes infoMenu {
+  0% {transform: translateY(-10vh) scaleY(.2) scaleX(.5); opacity: 0; background-color: rgba(5, 5, 5, 0.2);}
+  66% {transform: translateY(12px) scaleY(1.1); opacity: 1;}
+  66% {border-top-left-radius: 10px; border-top-right-radius: 10px}
+  100% {transform: scaleY(1); border-top: transparent; border-top-left-radius: 0; border-top-right-radius: 0;}
+}
+.grid {
+  display: grid !important;
+}
 
-        setTimeout(() => {
-          textInputCon.classList.remove('removeMsgCon');
-          textInputCon.classList.add('removedMsgCon');
-        }, 5000);});"*/
+#infoMenu div, #infoMenu h3 {
+  height: 2rem;
+  text-align: center;
+}
+
+.infoMenuMorph {
+  animation: infoMenuMorph ease .6s both;
+}
+@keyframes infoMenuMorph {
+  0% {border-bottom: 1px solid rgba(255, 255, 255, 0.1);}
+  75% {border-bottom-left-radius: 10px; border-bottom-right-radius: 10px}
+  100% {border-bottom: 1px solid rgba(0, 0, 0, 0); left: 15vw; right: 15vw; padding-block: 20px; background-color: rgba(255, 255, 255, 0.3); border: 1px solid rgba(255, 255, 255, 0.3); translate: 0 -7px; border-bottom-left-radius: 0; border-bottom-right-radius: 0;}
+}
+
+#chatName:not(.infoMenuMorph) {
+  animation: noLongerMorph 1s both cubic-bezier(.14,.71,.57,1.35);
+}
+
+@keyframes noLongerMorph {
+  100% {border-bottom: 1px solid rgba(255, 255, 255, 0.1);}
+  25% {border-bottom-left-radius: 10px; border-bottom-right-radius: 10px}
+  0% {border-bottom: 1px solid rgba(0, 0, 0, 0); left: 15vw; right: 15vw; padding-block: 20px; background-color: rgba(255, 255, 255, 0.3); border: 1px solid rgba(255, 255, 255, 0.3); translate: 0 -7px; border-bottom-left-radius: 0; border-bottom-right-radius: 0;}
+}
