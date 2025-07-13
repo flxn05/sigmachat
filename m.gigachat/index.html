@@ -19,7 +19,7 @@
 <body>
   <nav id="nav">
     <section id="headsection">
-    <h1 onclick="">gigaChat</h1>
+    <h1 onclick="document.getElementById('popupMenu').style.display = 'grid'" id="gigaChat">gigaChat</h1>
     <button id="addNewBtn" onclick="document.getElementById('addMenu').style.display = 'flex'"><img src="close.svg" alt="new"></button>
     </section>
     <section id="searchSection">
@@ -28,8 +28,11 @@
   </nav>
 
   <div id="popupMenu" class="hidden">
-    <button id="changeTheme" class="primary">Theme</button>
-    <button id="logout" class="secondary" onclick="logout()">Logout</button>
+    <button id="changeTheme" class="primary">Switch Theme</button>
+    <a href="espanol.html"><button id="changeLanguage" class="primary">Español</button></a>
+    <a href="deutsch.html"><button id="changeLanguage" class="primary">Deutsch</button></a>
+    <button>Set as default (English)</button>
+    <button id="logout" class="secondary" onclick="logout()" style="color: red;">Logout</button>
   </div>
 
   <main id="main">
@@ -68,9 +71,9 @@
 
       <div class="chat-con" id="chat-con">
         <div id="backToList"><img src="back.png" alt="back"></div>
-        <div id="chatName">
+        <div id="chatName" onclick="document.getElementById('infoMenu').classList.toggle('grid'); document.getElementById('chatName').classList.toggle('infoMenuMorph');">
          <div id="contact">"Neue Gruppe"</div>
-        <div id="contactType">Group</div>
+        <div id="contactType">Group chat</div>
         </div>
 
         <!--message-->
@@ -231,7 +234,7 @@ message
       <input id="userList" oninput="
       const c = (this.value.match(/:/g) || []).length;
       document.getElementById('contactTypeManage').textContent =
-        c === 0 ? 'Invalid' : (c === 1 ? 'Contact' : 'Group');
+        c === 0 ? 'Invalid' : (c === 1 ? 'Contact' : 'Group chat');
     " placeholder="user:user:user">
     </section>
     <section>
@@ -246,6 +249,18 @@ message
   </section>
   </div>
 </aside>
+
+<div id="infoMenu">
+  <div></div>
+  <h3>Info</h3>
+  <div></div>
+  <div>Joni</div>
+  <div>David</div>
+  <div>Felix</div>
+  <div>Michi</div>
+  <div>Flo</div>
+</div>
+
 
 <script>
   document.getElementById('backToList').addEventListener('click', function () {
@@ -299,30 +314,7 @@ message
     window.location.reload();
 }
 
-let addNewBtn = document.getElementById('addNewBtn');
-let addMenu = document.getElementById('addMenu');
-let cancelBtn = document.getElementById('cancelBtn');
 
-let searchBtn = document.getElementById('searchIconCon');
-let searchBar = document.getElementById('search-box');
-let closeBtn = document.getElementById('closeIconCon');
-
-
-function closeMenu() {
-  addMenu.style.display = 'none';
-  document.querySelector('.one').classList.remove('unfocus');
-  document.querySelector('.three').classList.remove('unfocus');
-  document.getElementById('nav').classList.remove('unfocus');
-}
-
-function openSearch() {
-  searchBar.style.width = '66vw';
-  searchBar.style.paddingBlock = '1rem';
-  searchBar.style.paddingInline = '1rem';
-  closeBtn.style.display = 'flex';
-  searchBtn.style.display = 'none';
-  searchBar.focus();
-}
 
 searchBar.addEventListener('input', function() {
     const query = this.value.toLowerCase();
@@ -338,44 +330,6 @@ searchBar.addEventListener('input', function() {
     });
 });
 
-function closeSearch() {
-  searchBar.style.width= '0';
-  searchBar.style.padding = '0';
-  closeBtn.style.display = 'none';
-  searchBtn.style.display = 'flex'
-}
-
-
-
-const startVoiceMsgBtn = document.getElementById('startVoiceMsg');
-
-//change buttons (type/talk)
-startVoiceMsgBtn.addEventListener('touchstart', () => {
-    startVoiceMsgBtn.classList.add('recording');
-});
-
-startVoiceMsgBtn.addEventListener('touchend', () => {
-    startVoiceMsgBtn.classList.remove('recording');
-});
-
-startVoiceMsgBtn.addEventListener('touchcancel', () => {
-    startVoiceMsgBtn.classList.remove('recording');
-});
-
-//change buttons when writing
-document.getElementById('text_input').addEventListener('input', function () {
-    const textInputChange = document.getElementById('text_input').value.trim();
-    const startVoiceMsg = document.getElementById('startVoiceMsg');
-    const sendMsg = document.getElementById('send-msg');
-
-    if (textInputChange !== '') {
-        startVoiceMsg.style.display = 'none';
-        sendMsg.style.display = 'inline-block';
-    } else {
-        startVoiceMsg.style.display = 'inline-block';
-        sendMsg.style.display = 'none';
-    }
-});
 
 
 let playVoiceMsg = document.getElementById('playVoiceMsg');
