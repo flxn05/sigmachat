@@ -37,7 +37,7 @@
 
   <main id="main">
     <div class="one" id="one">
-      <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
+      <div id="loadDefault" class="chat-box" style="color: var(--light); font-weight: normal;">load default ....</div>
       <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
       <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
       <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
@@ -59,7 +59,7 @@
       <div class="chat-box" style="color: var(--light); font-weight: normal;">loading ....</div>
     </div>
 
-      <div class="text-input-con">
+      <div class="text-input-con" id="text-input-con">
       <input type="text" class="text-input" id="text_input" placeholder="Message">
       <button type="button" id="send-msg" onclick="send_msg()">
         <img src="send.png" alt="send" id="sendIcon"></button>
@@ -261,40 +261,27 @@ message
   <div>Flo</div>
 </div>
 
-
 <script>
   document.getElementById('backToList').addEventListener('click', function () {
-  const one = document.getElementById('one');
-  const nav = document.getElementById('nav');
-  const three = document.getElementById('three');
-  const chatCon = document.getElementById('chat-con');
-  const textInputCon = document.querySelector('.text-input-con');
+    const one = document.getElementById('one');
+    const three = document.getElementById('three');
+    const txtInputCon = document.getElementById('text-input-con');
 
-  one.classList.add('listActive');
-  nav.classList.add('listActive');
-  three.classList.add('chatInactive');
-  chatCon.classList.add('chatInactive');
+    three.style.display = 'none';
+    one.style.display = 'grid';
+    txtInputCon.style.display = 'none';
+  });
 
-  setTimeout(() => {
-    one.classList.remove('listActive');  // Korrektur hier
-    one.classList.add('listNowActive');   // Korrektur hier
-    nav.classList.remove('listActive');
-    nav.classList.add('listNowActive');
 
-    three.classList.remove('chatInactive');
-    three.classList.add('chatNowInactive');
-    chatCon.classList.remove('chatInactive');
-    chatCon.classList.add('chatNowInactive');
-  }, 8000);
+  document.getElementById('loadDefault').addEventListener('click', function () {
+    const one = document.getElementById('one');
+    const three = document.getElementById('three');
+    const txtInputCon = document.getElementById('text-input-con');
 
-  textInputCon.classList.add('removeMsgCon');
-
-  setTimeout(() => {
-    textInputCon.classList.remove('removeMsgCon');
-    textInputCon.classList.add('removedMsgCon');
-  }, 5000);
-});
-
+    three.style.display = 'grid';
+    one.style.display = 'none';
+    txtInputCon.style.display = 'flex';
+  });
 </script>
 
 
