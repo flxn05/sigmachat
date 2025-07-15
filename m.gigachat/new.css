@@ -153,7 +153,6 @@ img {
 .msg-content-rx, .msg-content-tx {
   padding-inline: 12px;
   padding-block: 5px;
-  background-color: red;
   border-radius: 15px;
   max-width: 80vw;
 }
@@ -168,6 +167,39 @@ img {
   margin-right: 12px;
   box-shadow: 12px 12px 44px rgba(25, 110, 81, .5);
 }
+
+.animate {
+  animation: secret ease 5s .5s both;
+}
+@keyframes important {
+  0% {scale: 1;}
+  50% {scale: 1.15; filter: brightness(1.15); rotate: 1deg;}
+  100% {scale: 1;}
+}
+
+@keyframes secret {
+  0% {filter: blur(10px) saturate(0) brightness(.2); scale: .9;}
+  330% {filter: blur(5px);}
+  100% {filter: blur(0);}
+}
+
+
+@keyframes fun {
+  0%, 100% {transform: scaleX(1);}
+  50% {transform: scaleX(1.5); rotate: 5deg; translate: 0 -24px;}
+}
+
+@keyframes joy {
+  0%, 100% {transform: translateY(0);}
+  50% {transform: translateY(-44px); filter: brightness(1.2); scale: 1.05;}
+}
+
+@keyframes white {
+  0% {background-color: var(--font);}
+  100% {background-color: rgba(255, 255, 255, 0.4);}
+}
+
+
 
 #chatName {
   position: fixed;
@@ -280,7 +312,7 @@ img {
   background-image: linear-gradient(to top, var(--main), transparent);
 }
 
-#addMenu {
+#addMenu, #howTo {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -295,6 +327,26 @@ img {
   backdrop-filter: blur(10px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   overflow-y: scroll;
+}
+#howTo {
+  padding-inline: 10vw;
+  text-align: left;
+}
+#howTo h2 {
+  color: var(--secondary);
+}
+#howTo h3 {
+  color: var(--primary);
+}
+
+#howTo p,
+#howTo h2,
+#howTo h3 {
+  margin-block: 4px;
+}
+#howTo p {
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
 }
 
 #chatNameManage {
@@ -366,7 +418,8 @@ img {
   justify-content: space-between;
 }
 
-#addMenu button {
+#addMenu button,
+#howTo button {
   border-radius: 15px;
   padding-block: 8px;
   padding-inline: 15px;
