@@ -32,6 +32,7 @@
     <a href="espanol.html"><button id="changeLanguage" class="primary">Español</button></a>
     <a href="deutsch.html"><button id="changeLanguage" class="primary">Deutsch</button></a>
     <button>Set as default (English)</button>
+    <button onclick="document.getElementById('howTo').style.display = 'block'">How To Install the App</button>
     <button id="logout" class="secondary" onclick="logout()" style="color: red;">Logout</button>
   </div>
 
@@ -100,7 +101,7 @@
 
       <!--message-->
       <div class="msg-tx">
-        <div class="msg-content-tx">HI HOW ARE YOU ESTAS BIEN? Lorem, ipsum dolor sit elit. Assumenda consectetur deleniti sint animi aspernatur eaque similique blanditiis voluptas, eius nihil repellendus!</div>
+        <div class="msg-content-tx animate">HI HOW ARE YOU ESTAS BIEN? Lorem, ipsum dolor sit elit. Assumenda consectetur deleniti sint animi aspernatur eaque similique blanditiis voluptas, eius nihil repellendus!</div>
       </div>
 
 
@@ -109,6 +110,7 @@
           <div class="msg-content-rx" style="max-width: 100%; line-height: 1.5rem;">
             Our developers:
             Sigma Boii
+            /fire
           </div>
         </div>
         <!--message-->
@@ -248,6 +250,25 @@ message
 
   </section>
   </div>
+
+  <div id="howTo">
+    <h1>How To Install the gigaChat App</h1>
+    <h2>On iOS</h2>
+    <h3>Only works in Safari.</h3>
+    <p>Go to the share menu, scroll down, then click "Add to Home Screen". This will place gigaDrive on your Homescreen and install it.</p>
+    <h2>On Android</h2>
+    <h3>Only works in Google Chrome.</h3>
+    <p>Go to the three dots, look for "Add to Homescreen".
+      It will ask you whether to add gigaChat to the Homescreen or to install it as an PWA.<br>
+      Confirm installation.<br>You will have to wait a bit to have the necessary cache files downloaded.<br>
+      Once finished, you can choose to add it to the Homescreen manually, if not happened automatically.</p>
+      <button id="cancelBtn" onclick="document.getElementById('howTo').style.display = 'none';" class="secondary">Cancel</button>
+  </div>
+
+
+
+
+
 </aside>
 
 <div id="infoMenu">
